@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './config/ReactotronConfig';
-import store from './store';
+import store from './store/indexSaga';
 
 ReactDOM.render(
   <React.StrictMode>

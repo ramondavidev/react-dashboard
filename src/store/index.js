@@ -1,23 +1,18 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { 
+  useDispatch as useReduxDispatch,
+  useSelector as useReduxSelector
+} from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { ENABLE_REDUX_DEV_TOOLS } from 'src/constants';
+import rootReducer from './rootReducer';
 
-import rootReducer from './modules/root-reducer';
-import rootSaga from './modules/root-saga';
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: ENABLE_REDUX_DEV_TOOLS
+});
 
-const sagaMonitor =
-  process.env.NODE_ENV === 'development'
-    ? console.tron.createSagaMonitor()
-    : null;
+export const useSelector = useReduxSelector;
 
-const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
-
-const enchancer =
-  process.env.NODE_ENV === 'development'
-    ? compose(console.tron.createEnhancer(), applyMiddleware(sagaMiddleware))
-    : applyMiddleware(sagaMiddleware);
-
-const store = createStore(rootReducer, enchancer);
-
-sagaMiddleware.run(rootSaga);
+export const useDispatch = () => useReduxDispatch();
 
 export default store;

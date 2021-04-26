@@ -1,0 +1,11 @@
+
+
+A pasta "modules" foi o modelo desenvolvido por Diego Rodrigues para consumo
+do REDUX utilizando REDUX-SAGA.
+
+Em analise com Rodrigo, Tauan e Ramom em 26/04/2021, optamos por utilizar 
+o THUNK junto com o modelo de "slice" que o proprio projeto original implantava.
+
+Vamos manter esta pasta "modules" so para questao de conceitos e estudos futuros.
+o arquivo "indexSaga.js" que esta a um nivel acima desta pasta era o "index" enviado
+por Diego para trabalhar com o SAGA.
