@@ -1,0 +1,12 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "semi": true,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "arrowParens": "avoid",
+  "useTabs": false,
+  "react/jsx-max-props-per-line": [1, { "when": "always" }]
+}
