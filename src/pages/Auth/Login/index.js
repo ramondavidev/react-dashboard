@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { makeStyles, fade, useTheme } from '@material-ui/core';
+import { fade, useTheme } from '@material-ui/core';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -22,25 +22,7 @@ import Divider from '@material-ui/core/Divider';
 import * as authActions from '~/store/modules/auth/auth-actions';
 
 import Page from '~/components/Page';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: 520
-  },
-  cardContent: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-
-  logo: {
-    color: theme.palette.primary.main,
-    fontSize: '62px',
-    '& > span': {
-      fontWeight: 300,
-      color: theme.palette.text.primary
-    }
-  }
-}));
+import useStyles from './index.styles';
 
 const Login = ({ className, ...rest }) => {
   const theme = useTheme();
