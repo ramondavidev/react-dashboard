@@ -29,9 +29,11 @@ const Account = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const ref = useRef(null);
-  const { usuario: usuarioLogado, usuarioPerfil } = useSelector(
-    state => state.auth
-  );
+  const usuarioLogado = null;
+  const usuarioPerfil = null;
+  // const { usuario: usuarioLogado, usuarioPerfil } = useSelector(
+  //   state => state.auth
+  // );
   const [isOpen, setOpen] = useState(false);
 
   const handleOpen = () => {

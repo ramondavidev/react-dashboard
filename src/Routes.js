@@ -30,7 +30,7 @@ const Routes = () => (
         component: MenuLayout,
         routes: [
           {
-            path: '/',
+            path: '/:token',
             exact: true,
             component: lazy(() => import('./pages/Home'))
           },
