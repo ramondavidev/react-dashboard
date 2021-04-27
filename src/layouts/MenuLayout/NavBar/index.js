@@ -18,6 +18,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import {
   Briefcase as BriefcaseIcon,
   Calendar as CalendarIcon,
@@ -44,14 +45,18 @@ import NavItem from './NavItem';
 
 const sections = [
   {
-    subheader: 'Venda',
+    subheader: 'Dashboards',
     items: [
       {
-        title: 'Tela rápida de venda',
+        title: 'Estoque',
         icon: PieChartIcon,
-        href: '/pdv'
+        href: '/estoque'
       },
-      
+      {
+        title: 'Faturamento',
+        icon: MonetizationOnOutlinedIcon,
+        href: '/faturamento'
+      }
     ]
   },
   {
