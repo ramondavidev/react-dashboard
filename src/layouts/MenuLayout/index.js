@@ -1,6 +1,11 @@
-import React, { useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { renderRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
+import { APP_TOKEN } from '~/constants';
+
+import { useDispatch, useSelector } from '~/store/index';
+import { getUserData } from '../../store/modules/user/user.actions';
+
 import { makeStyles } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -36,9 +41,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const MenuLayout = ({ route }) => {
+const MenuLayout = ({ route, match }) => {
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem(APP_TOKEN, match.params[0].substring(1));
+    dispatch(getUserData());
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>

@@ -5,8 +5,11 @@ export const APP_USER = 'SIAFPLUS_USER';
 export const APP_MENU = 'SIAFPLUS_MENU';
 export const APP_THEME = 'SIAFPLUS_THEME';
 
-export const BASE_API_URL = process.env.REACT_APP_URL_API;
+export const BASE_API_URL = 'https://erp-api-test.adsoft.com.br/api';
 export const NODE_API_URL = process.env.REACT_APP_URL_NODE_API;
+
+export const ENABLE_REDUX_DEV_TOOLS = true;
+export const DISABLE_REDUX_DEV_TOOLS = false;
 
 export const THEMES = {
   DEFAULT: 'DEFAULT',

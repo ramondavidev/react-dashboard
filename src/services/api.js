@@ -1,10 +1,9 @@
 import axios from 'axios';
-import _ from 'lodash';
 
-import { APP_TOKEN } from '~/constants';
+import { APP_TOKEN, BASE_API_URL } from '~/constants';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_URL_API
+  baseURL: `${BASE_API_URL}`
 });
 
 api.interceptors.request.use(async config => {

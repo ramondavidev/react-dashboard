@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, Tooltip } from '@material-ui/core';
+import { changeTheme } from '~/store/modules/app/app.actions';
 import {
   BrightnessLow as IconBrightnessLow,
   BrightnessHigh as IconBrightnessHigh
@@ -8,7 +9,6 @@ import {
 
 
 import { THEMES, TIPO_DOCUMENTO } from '~/constants';
-import * as appActions from '~/store/modules/app/app-actions';
 
 const ChangeTheme = () => {
   const { theme } = useSelector(state => state.app);
@@ -17,11 +17,7 @@ const ChangeTheme = () => {
     <Tooltip title="Alternar tema claro/escuro">
       <IconButton
         onClick={() =>
-          dispatch(
-            appActions.setTheme(
-              theme === THEMES.DEFAULT ? THEMES.DARK : THEMES.DEFAULT
-            )
-          )
+          dispatch(changeTheme(theme))
         }
       >
         {theme === THEMES.DEFAULT ? (
