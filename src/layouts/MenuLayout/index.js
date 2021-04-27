@@ -25,9 +25,9 @@ const useStyles = makeStyles(theme => ({
     flex: '1 1 auto',
     overflow: 'hidden',
     paddingTop: 64,
-    // [theme.breakpoints.up('lg')]: {
-    //   paddingLeft: 256
-    // }
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: 256
+    }
   },
   contentContainer: {
     display: 'flex',
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     flex: '1 1 auto',
     height: '100%',
-    // overflow: 'auto'
+    overflow: 'auto'
   }
 }));
 
@@ -45,7 +45,7 @@ const MenuLayout = ({ route, match }) => {
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -63,7 +63,10 @@ const MenuLayout = ({ route, match }) => {
         />
         <div className={classes.wrapper}>
           <div className={classes.contentContainer}>
-            <div className={classes.content}>{renderRoutes(route.routes)}</div>
+            <div className={classes.content}>
+              {console.log('children: ', route.routes)}
+              {renderRoutes(route.routes)}
+            </div>
           </div>
         </div>
       </Suspense>
