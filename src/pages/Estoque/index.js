@@ -215,6 +215,7 @@ function Estoque() {
                   <BarProgressCurve
                     theme={theme}
                     value={30}
+                    color={theme.palette.primary.main}
                     labelAfterValue="Curve"
                     size={160}
                   />

@@ -44,8 +44,14 @@ export default createGlobalStyle`
   .gauge-svg circle{
     stroke-linecap: square !important;
   }
+  .gauge-svg circle:nth-child(1){
+    stroke: ${props =>
+      props.theme.palette.grey[
+        props.theme.palette.type === 'light' ? 200 : 700
+      ]} !important;
+  }
   .gauge-svg circle:nth-child(3){
-    stroke: transparent !important
+    stroke: transparent !important;
   }
 
 // `;
