@@ -1,43 +1,25 @@
-/* eslint-disable no-use-before-define */
 import React, { useEffect } from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
+import SelectInput from '../../../components/Inputs/Select';
+import CustomizedButtons from '../../../components/Button';
 import {
-  Avatar,
   Box,
-  Chip,
   Divider,
   Drawer,
   Hidden,
-  Link,
   List,
   ListSubheader,
-  Typography,
   makeStyles
 } from '@material-ui/core';
-import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import {
-  Briefcase as BriefcaseIcon,
-  Calendar as CalendarIcon,
-  ShoppingCart as ShoppingCartIcon,
-  Folder as FolderIcon,
   BarChart as BarChartIcon,
-  Lock as LockIcon,
-  UserPlus as UserPlusIcon,
-  AlertCircle as AlertCircleIcon,
-  Trello as TrelloIcon,
-  User as UserIcon,
-  Layout as LayoutIcon,
-  Edit as EditIcon,
-  DollarSign as DollarSignIcon,
-  Mail as MailIcon,
-  MessageCircle as MessageCircleIcon,
-  PieChart as PieChartIcon,
-  Share2 as ShareIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  Activity as ActivityIcon,
+  Package as PackageIcon
 } from 'react-feather';
 // import Logo from 'src/components/Logo';
 // import useAuth from 'src/hooks/useAuth';
@@ -49,21 +31,26 @@ const sections = [
     items: [
       {
         title: 'Estoque',
-        icon: PieChartIcon,
+        icon: PackageIcon,
         href: '/estoque'
       },
       {
         title: 'Faturamento',
         icon: MonetizationOnOutlinedIcon,
         href: '/faturamento'
+      },
+      {
+        title: 'Ciclo Operacional',
+        icon: ActivityIcon,
+        href: '/ciclo-operacional'
       }
     ]
   },
   {
-    subheader: 'Management',
+    subheader: 'Gerenciamento',
     items: [
       {
-        title: 'Customers',
+        title: 'Clientes',
         icon: UsersIcon,
         href: '/app/management/customers',
         items: [
@@ -81,194 +68,19 @@ const sections = [
           }
         ]
       },
-      {
-        title: 'Products',
-        icon: ShoppingCartIcon,
-        href: '/app/management/products',
-        items: [
-          {
-            title: 'List Products',
-            href: '/app/management/products'
-          },
-          {
-            title: 'Create Product',
-            href: '/app/management/products/create'
-          }
-        ]
-      },
-      {
-        title: 'Orders',
-        icon: FolderIcon,
-        href: '/app/management/orders',
-        items: [
-          {
-            title: 'List Orders',
-            href: '/app/management/orders'
-          },
-          {
-            title: 'View Order',
-            href: '/app/management/orders/1'
-          }
-        ]
-      },
-      {
-        title: 'Invoices',
-        icon: ReceiptIcon,
-        href: '/app/management/invoices',
-        items: [
-          {
-            title: 'List Invoices',
-            href: '/app/management/invoices'
-          },
-          {
-            title: 'View Invoice',
-            href: '/app/management/invoices/1'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    subheader: 'Applications',
-    items: [
-      {
-        title: 'Projects Platform',
-        href: '/app/projects',
-        icon: BriefcaseIcon,
-        items: [
-          {
-            title: 'Overview',
-            href: '/app/projects/overview'
-          },
-          {
-            title: 'Browse Projects',
-            href: '/app/projects/browse'
-          },
-          {
-            title: 'Create Project',
-            href: '/app/projects/create'
-          },
-          {
-            title: 'View Project',
-            href: '/app/projects/1'
-          }
-        ]
-      },
-      {
-        title: 'Social Platform',
-        href: '/app/social',
-        icon: ShareIcon,
-        items: [
-          {
-            title: 'Profile',
-            href: '/app/social/profile'
-          },
-          {
-            title: 'Feed',
-            href: '/app/social/feed'
-          }
-        ]
-      },
-      {
-        title: 'Kanban',
-        href: '/app/kanban',
-        icon: TrelloIcon
-      },
-      {
-        title: 'Mail',
-        href: '/app/mail',
-        icon: MailIcon
-      },
-      {
-        title: 'Chat',
-        href: '/app/chat',
-        icon: MessageCircleIcon,
-        info: () => <Chip color="secondary" size="small" label="Updated" />
-      },
-      {
-        title: 'Calendar',
-        href: '/app/calendar',
-        icon: CalendarIcon,
-        info: () => <Chip color="secondary" size="small" label="Updated" />
-      }
-    ]
-  },
-  {
-    subheader: 'Auth',
-    items: [
-      {
-        title: 'Login',
-        href: '/login-unprotected',
-        icon: LockIcon
-      },
-      {
-        title: 'Register',
-        href: '/register-unprotected',
-        icon: UserPlusIcon
-      }
-    ]
-  },
-  {
-    subheader: 'Pages',
-    items: [
-      {
-        title: 'Account',
-        href: '/app/account',
-        icon: UserIcon
-      },
-      {
-        title: 'Error',
-        href: '/404',
-        icon: AlertCircleIcon
-      },
-      {
-        title: 'Pricing',
-        href: '/pricing',
-        icon: DollarSignIcon
-      }
     ]
   },
   {
     subheader: 'Extra',
     items: [
       {
-        title: 'Charts',
+        title: 'Configurações',
         href: '/app/extra/charts',
         icon: BarChartIcon,
         items: [
           {
             title: 'Apex Charts',
             href: '/app/extra/charts/apex'
-          }
-        ]
-      },
-      {
-        title: 'Forms',
-        href: '/app/extra/forms',
-        icon: EditIcon,
-        items: [
-          {
-            title: 'Formik',
-            href: '/app/extra/forms/formik'
-          },
-          {
-            title: 'Redux Forms',
-            href: '/app/extra/forms/redux'
-          }
-        ]
-      },
-      {
-        title: 'Editors',
-        href: '/app/extra/editors',
-        icon: LayoutIcon,
-        items: [
-          {
-            title: 'DraftJS Editor',
-            href: '/app/extra/editors/draft-js'
-          },
-          {
-            title: 'Quill Editor',
-            href: '/app/extra/editors/quill'
           }
         ]
       }
@@ -349,6 +161,29 @@ const NavBar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
   // const { user } = useAuth();
 
+  const years = [
+    { value: "2021" },
+    { value: "2020" },
+    { value: "2019" },
+    { value: "2018" },
+    { value: "2017" }
+];
+
+  const months = [
+    { value: "Janeiro" },
+    { value: "Fevereiro" },
+    { value: "Março" },
+    { value: "Abril" },
+    { value: "Maio" },
+    { value: "Junho" },
+    { value: "Julho" },
+    { value: "Agosto" },
+    { value: "Setembo" },
+    { value: "Outrubro" },
+    { value: "Novembro" },
+    { value: "Dezembro" }
+];
+
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
@@ -381,6 +216,10 @@ const NavBar = ({ onMobileClose, openMobile }) => {
               })}
             </List>
           ))}
+          Filtro
+          <List> <SelectInput options={years} /> </List>
+          <List> <SelectInput options={months} /> </List>
+          <List> <CustomizedButtons value='Pesquisar' /> </List>
         </Box>
         <Divider />
       </PerfectScrollbar>
