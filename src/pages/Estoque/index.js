@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState, useRef } from 'react';
 import Page from '~/components/Page';
 import {
@@ -148,10 +149,21 @@ function DashboardVendas(props) {
           </Grid>
         </Grid>
       </Container>
+=======
+import React from 'react';
+import Page from '~/components/Page';
+
+
+const Estoque = ({}) => {
+  return (
+    <Page title="Dashboard Estoque">
+        
+>>>>>>> b723f45eecc5cea640a0ba4e101945048b48dd21
     </Page>
   );
 }
 
+<<<<<<< HEAD
 const data = {
   quantidadeItemsEstoque: [
     { name: 'JAN', faturamento: 15 },
@@ -182,3 +194,7 @@ const data = {
 };
 
 export default DashboardVendas;
+=======
+
+export default Estoque;
+>>>>>>> b723f45eecc5cea640a0ba4e101945048b48dd21
