@@ -56,11 +56,11 @@ const MenuLayout = ({ route, match }) => {
   return (
     <div className={classes.root}>
       <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
-      <Suspense fallback={<LinearProgress />}>
-        <NavBar
+      <NavBar
           onMobileClose={() => setMobileNavOpen(false)}
           openMobile={isMobileNavOpen}
         />
+      <Suspense fallback={<LinearProgress />}>
         <div className={classes.wrapper}>
           <div className={classes.contentContainer}>
             <div className={classes.content}>
