@@ -1,7 +1,6 @@
 import { Box, CircularProgress, Typography } from '@material-ui/core';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-// Inspired by the former Facebook spinners.
 const useStylesFacebook = makeStyles(theme => ({
   root: {
     position: 'relative'
