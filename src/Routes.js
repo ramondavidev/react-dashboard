@@ -36,6 +36,16 @@ const Routes = () => (
               component: lazy(() => import('./pages/Faturamento'))
             },
             {
+              path: '/estoque',
+              exact: true,
+              component: lazy(() => import('./pages/Estoque'))
+            },
+            {
+              path: '/ciclo-operacional',
+              exact: true,
+              component: lazy(() => import('./pages/CicloOperacional'))
+            },
+            {
               path: '/:token',
               exact: true,
               component: lazy(() => import('./pages/Home'))

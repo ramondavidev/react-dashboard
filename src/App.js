@@ -48,7 +48,7 @@ const App = () => {
                 <CssBaseline />
                 <GlobalStyles />
                 {/* <ScrollReset /> */}
-
+                
                 <Routes />
               </SnackbarProvider>
             </LocalizationProvider>
