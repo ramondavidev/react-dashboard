@@ -41,14 +41,11 @@ const Routes = () => (
               component: lazy(() => import('./pages/Estoque'))
             },
             {
-<<<<<<< HEAD
-=======
               path: '/ciclo-operacional',
               exact: true,
               component: lazy(() => import('./pages/CicloOperacional'))
             },
             {
->>>>>>> b723f45eecc5cea640a0ba4e101945048b48dd21
               path: '/:token',
               exact: true,
               component: lazy(() => import('./pages/Home'))
