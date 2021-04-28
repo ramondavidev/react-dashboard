@@ -10,14 +10,14 @@ import {
 } from 'recharts';
 import { fade } from '@material-ui/core';
 
-function CharBars({ width, theme, data, nameKey, dataKey }) {
+function CharBars({ width, theme, data, nameKey, dataKey, alignment }) {
   return (
     <ResponsiveContainer width="99%" height={300}>
       <BarChart
         width={width}
         height={300}
         data={data}
-        layout="vertical"
+        layout={alignment || 'vertical'}
         margin={{
           top: 5,
           right: 30,
@@ -32,14 +32,15 @@ function CharBars({ width, theme, data, nameKey, dataKey }) {
           vertical={true}
         />
         <XAxis
-          axisLine={false}
-          type="number"
+          type={alignment === 'horizontal' ? 'category' : 'number'}
+          dataKey={alignment === 'horizontal' ? nameKey : null}
           stroke={theme.palette.text.secondary}
           tickLine={false}
         />
         <YAxis
-          type="category"
-          dataKey={nameKey}
+          axisLine={false}
+          type={alignment === 'horizontal' ? 'number' : 'category'}
+          dataKey={alignment === 'horizontal' ? null : nameKey}
           stroke={theme.palette.text.secondary}
           tickLine={false}
         />
