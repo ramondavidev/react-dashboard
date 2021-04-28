@@ -85,6 +85,12 @@ const sections = [
         ]
       }
     ]
+  },
+  {
+    subheader: 'Filtro',
+    items: [
+      
+    ]
   }
 ];
 
@@ -216,7 +222,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
               })}
             </List>
           ))}
-          Filtro
           <List> <SelectInput options={years} /> </List>
           <List> <SelectInput options={months} /> </List>
           <List> <CustomizedButtons value='Pesquisar' /> </List>
