@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from '~/store/index';
 import Select from "react-select";
 
 const SelectInput = ({ options }) => {
