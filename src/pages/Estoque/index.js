@@ -14,10 +14,11 @@ import {
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   ChartBarSimple,
-  ChartDonut,
-  ChartPizza,
   ChartLine,
-  ChartBars
+  ChartBars,
+  CircularProgress,
+  BarProgress,
+  BarProgressCurve
 } from '~/components/Charts';
 
 const useStyles = makeStyles(theme => ({
@@ -141,6 +142,81 @@ function Estoque() {
                     data={vendas.produtosSemMovimento}
                     nameKey="name"
                     dataKey="value"
+                  />
+                </Box>
+              </PerfectScrollbar>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card>
+              <CardHeader title="Indices de perdas no estoque" />
+              <Divider />
+              <PerfectScrollbar>
+                <Box
+                  width="100%"
+                  height={332}
+                  pt={4}
+                  px={2}
+                  pb={2}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <CircularProgress
+                    theme={theme}
+                    value={50}
+                    labelAfterValue="%"
+                    size={160}
+                  />
+                </Box>
+              </PerfectScrollbar>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card>
+              <CardHeader title="Prazo médio de estocagem" />
+              <Divider />
+              <PerfectScrollbar>
+                <Box
+                  width="100%"
+                  height={332}
+                  pt={4}
+                  px={2}
+                  pb={2}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <BarProgress
+                    theme={theme}
+                    value={30}
+                    labelAfterValue="Dias"
+                    size={160}
+                  />
+                </Box>
+              </PerfectScrollbar>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card>
+              <CardHeader title="Itens abaixo do ponto de pedido" />
+              <Divider />
+              <PerfectScrollbar>
+                <Box
+                  width="100%"
+                  height={332}
+                  pt={4}
+                  px={2}
+                  pb={2}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <BarProgressCurve
+                    theme={theme}
+                    value={30}
+                    labelAfterValue="Curve"
+                    size={160}
                   />
                 </Box>
               </PerfectScrollbar>

@@ -1,10 +1,8 @@
-// *https://www.registers.service.gov.uk/registers/country/use-the-api*
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
-import axios from 'axios';
 import MuiAlert from '@material-ui/lab/Alert';
 import api from '~/services/api';
 const Alert = props => <MuiAlert elevation={6} variant="filled" {...props} />;
