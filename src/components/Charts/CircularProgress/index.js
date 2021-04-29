@@ -6,7 +6,7 @@ const useStylesFacebook = makeStyles(theme => ({
     position: 'relative'
   },
   bottom: {
-    color: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700]
+    color: theme.palette.divider
   },
   top: {
     color: '#1a90ff',
