@@ -3,13 +3,13 @@ import Page from '~/components/Page';
 import {
   Container,
   Grid,
-  makeStyles,
   Card,
   Box,
   Divider,
   CardHeader,
   useTheme,
-  fade
+  fade,
+  Typography
 } from '@material-ui/core';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -18,17 +18,10 @@ import {
   ChartBars,
   CircularProgress,
   BarProgress,
-  BarProgressCurve
+  GaugeChart
 } from '~/components/Charts';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
-}));
+import useStyles from './estoque.style';
+import Breadcrumb from './Breadcrumb';
 
 function Estoque() {
   const theme = useTheme();
@@ -44,6 +37,71 @@ function Estoque() {
   return (
     <Page className={classes.root} title="Dashboard Estoque">
       <Container maxWidth={false}>
+        <Breadcrumb />
+        <Box mb={2} mt={2}>
+          <Card>
+            <Grid alignItems="center" container justify="space-evenly">
+              <Grid className={classes.item} item md={4} sm={6} xs={12}>
+                <Typography
+                  component="h2"
+                  gutterBottom
+                  variant="overline"
+                  color="textSecondary"
+                >
+                  Indices de perdas no estoque
+                </Typography>
+                <div className={classes.valueContainer}>
+                  <CircularProgress
+                    theme={theme}
+                    value={50}
+                    labelAfterValue="%"
+                    size={100}
+                  />
+                </div>
+              </Grid>
+              <Grid className={classes.item} item md={4} sm={6} xs={12}>
+                <Typography
+                  component="h2"
+                  gutterBottom
+                  variant="overline"
+                  color="textSecondary"
+                >
+                  Prazo médio de estocagem
+                </Typography>
+                <div className={classes.valueContainer}>
+                  <BarProgress
+                    theme={theme}
+                    value={30}
+                    labelAfterValue="Dias"
+                    size={160}
+                  />
+                </div>
+              </Grid>
+              <Grid className={classes.item} item md={4} sm={6} xs={12}>
+                <Typography
+                  component="h2"
+                  gutterBottom
+                  variant="overline"
+                  color="textSecondary"
+                >
+                  Itens abaixo do ponto de pedido
+                </Typography>
+                <div className={classes.valueContainer}>
+                  <GaugeChart
+                    theme={theme}
+                    value={0.3}
+                    color={[
+                      fade('#0068e9', 0.3),
+                      fade('#0068e9', 0.6),
+                      fade('#0068e9', 0.9)
+                    ]}
+                    size={350}
+                  />
+                </div>
+              </Grid>
+            </Grid>
+          </Card>
+        </Box>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <Card ref={cardRef}>
@@ -59,12 +117,12 @@ function Estoque() {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <ChartLine
+                  <ChartBarSimple
                     width={cardWidth}
                     theme={theme}
-                    data={vendas.quantidadeItemsEstoque}
+                    data={vendas.estoqueMedioPorMes}
                     nameKey="name"
-                    dataKey="faturamento"
+                    dataKey="estoque"
                   />
                 </Box>
               </PerfectScrollbar>
@@ -98,7 +156,7 @@ function Estoque() {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <Card>
-              <CardHeader title="Estoque médio por mês" />
+              <CardHeader title="Quantidade de itens no estoque" />
               <Divider />
               <PerfectScrollbar>
                 <Box
@@ -110,12 +168,12 @@ function Estoque() {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <ChartBarSimple
+                  <ChartLine
                     width={cardWidth}
                     theme={theme}
-                    data={vendas.estoqueMedioPorMes}
+                    data={vendas.quantidadeItemsEstoque}
                     nameKey="name"
-                    dataKey="estoque"
+                    dataKey="faturamento"
                   />
                 </Box>
               </PerfectScrollbar>
@@ -142,82 +200,6 @@ function Estoque() {
                     data={vendas.produtosSemMovimento}
                     nameKey="name"
                     dataKey="value"
-                  />
-                </Box>
-              </PerfectScrollbar>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <Card>
-              <CardHeader title="Indices de perdas no estoque" />
-              <Divider />
-              <PerfectScrollbar>
-                <Box
-                  width="100%"
-                  height={332}
-                  pt={4}
-                  px={2}
-                  pb={2}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <CircularProgress
-                    theme={theme}
-                    value={50}
-                    labelAfterValue="%"
-                    size={160}
-                  />
-                </Box>
-              </PerfectScrollbar>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <Card>
-              <CardHeader title="Prazo médio de estocagem" />
-              <Divider />
-              <PerfectScrollbar>
-                <Box
-                  width="100%"
-                  height={332}
-                  pt={4}
-                  px={2}
-                  pb={2}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <BarProgress
-                    theme={theme}
-                    value={30}
-                    labelAfterValue="Dias"
-                    size={160}
-                  />
-                </Box>
-              </PerfectScrollbar>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <Card>
-              <CardHeader title="Itens abaixo do ponto de pedido" />
-              <Divider />
-              <PerfectScrollbar>
-                <Box
-                  width="100%"
-                  height={332}
-                  pt={4}
-                  px={2}
-                  pb={2}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <BarProgressCurve
-                    theme={theme}
-                    value={30}
-                    color={theme.palette.primary.main}
-                    labelAfterValue="Curve"
-                    size={160}
                   />
                 </Box>
               </PerfectScrollbar>
