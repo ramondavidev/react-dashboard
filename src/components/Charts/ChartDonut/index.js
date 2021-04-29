@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 
-function ChartPie({ width, theme, data, nameKey, dataKey }) {
+function ChartPie({ width, theme, data, nameKey, dataKey,startAngle, endAngle }) {
   const RADIAN = Math.PI / 180;
 
   const renderCustomizedLabel = ({
@@ -47,6 +47,8 @@ function ChartPie({ width, theme, data, nameKey, dataKey }) {
           cy={120}
           labelLine={false}
           label={renderCustomizedLabel}
+          startAngle={startAngle}
+          endAngle={endAngle}
           innerRadius={60}
           outerRadius={80}
           paddingAngle={0}

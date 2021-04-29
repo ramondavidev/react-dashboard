@@ -6,9 +6,21 @@ const SelectInput = ({ options }) => {
   const onchangeSelect = (item) => {
     setOption(item);
   };
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? 'white' : 'black'
+    }),
+    singleValue: (provided, state) => {
+      return { ...provided };
+    }
+  }
+
   return (
     <div className="SelectInput">
        <Select
+          styles={customStyles}
           value={option}
           onChange={onchangeSelect}
           options={options}
