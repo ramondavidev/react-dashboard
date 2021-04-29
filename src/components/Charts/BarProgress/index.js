@@ -7,8 +7,7 @@ const BorderLinearProgress = withStyles(theme => ({
     height: 14
   },
   colorPrimary: {
-    backgroundColor:
-      theme.palette.grey[theme.palette.type === 'light' ? 200 : 700]
+    backgroundColor: theme.palette.divider
   },
   bar: {
     backgroundColor: '#1a90ff'
@@ -26,8 +25,9 @@ export default function BarProgress({
       display="flex"
       alignItems="center"
       flexDirection="column"
-      justifyContent="center"
+      justifyContent="flex-start"
       width="100%"
+      height={100}
     >
       <Typography variant="h3" component="h3" color="textSecondary">
         {`${labelBeforeValue} ${value} ${labelAfterValue}`}

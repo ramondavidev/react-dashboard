@@ -1,4 +1,3 @@
-import { Theme } from '@material-ui/core';
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
@@ -30,30 +29,6 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-  
-  /*Gauge Chart */
-  .number{
-    color: ${props => props.theme.palette.text.secondary} !important;
-    font-size: 24px !important;
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 500 !important;
-    line-height: 1.167 !important;
-    letter-spacing: -0.06px !important;
-  }
-
-  .gauge-svg circle{
-    stroke-linecap: square !important;
-  }
-  .gauge-svg circle:nth-child(1){
-    stroke: ${props =>
-      props.theme.palette.grey[
-        props.theme.palette.type === 'light' ? 200 : 700
-      ]} !important;
-  }
-  .gauge-svg circle:nth-child(3){
-    stroke: transparent !important;
-  }
-
 // `;
 
 // const useStyles = makeStyles(() => createStyles({

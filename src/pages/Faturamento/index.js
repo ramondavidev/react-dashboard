@@ -3,7 +3,6 @@ import Page from '~/components/Page';
 import {
   Container,
   Grid,
-  makeStyles,
   Card,
   Box,
   Divider,
@@ -19,15 +18,8 @@ import {
   ChartLine,
   ChartBars
 } from '~/components/Charts';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
-}));
+import Breadcrumb from './Breadcrumb';
+import useStyles from './faturamento.styles';
 
 function DashboardVendas(props) {
   const theme = useTheme();
@@ -43,6 +35,7 @@ function DashboardVendas(props) {
   return (
     <Page className={classes.root} title="Dashboard Faturamento">
       <Container maxWidth={false}>
+        <Breadcrumb />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <Card ref={cardRef}>

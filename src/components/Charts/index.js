@@ -5,7 +5,7 @@ import ChartDonut from './ChartDonut';
 import ChartPizza from './ChartPizza';
 import CircularProgress from './CircularProgress';
 import BarProgress from './BarProgress';
-import BarProgressCurve from './BarProgressCurve';
+import GaugeChart from './GaugeChart';
 
 export {
   ChartBarSimple,
@@ -15,5 +15,5 @@ export {
   ChartPizza,
   CircularProgress,
   BarProgress,
-  BarProgressCurve
+  GaugeChart
 };
