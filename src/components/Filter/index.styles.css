@@ -1,0 +1,76 @@
+.years-container {
+    margin-top: 10%;
+    font-weight: 400;
+    text-transform: none;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.checked {
+    background-color: #2684FF;
+    color: #fff;
+}
+
+.option-date {
+    border: 1px solid grey;
+    width: 95%;
+    margin: 6px auto;
+    border-radius: 8px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+  
+.option-date:hover {
+    background-color: #2684FF;
+    color: #fff;
+    transition-duration: .3s;
+}
+
+.button-search {
+    height: 35px;
+    width: 90%;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #82CA9D;
+    cursor: pointer;
+    background-color: #82CA9D;
+    color: #fff;
+  }
+  
+  .button-search:hover {
+    background-color: #45c074;
+    transition-duration: .3s;
+  }
+
+  /* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  .months-container {
+    overflow: scroll;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    height: 200px;
+    font-weight: 400;
+    text-transform: none;
+  }
