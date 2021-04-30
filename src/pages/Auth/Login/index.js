@@ -19,7 +19,7 @@ import Divider from '@material-ui/core/Divider';
 
 // import useAuth from '~/hooks/auth-hook';
 // import useIsMountedRef from '~/hooks/useIsMountedRef';
-import * as authActions from '~/store/modules/auth/auth-actions';
+import * as authActions from '~/store/slices/auth/auth-actions';
 
 import Page from '~/components/Page';
 import useStyles from './index.styles';

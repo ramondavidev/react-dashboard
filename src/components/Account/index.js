@@ -12,7 +12,7 @@ import {
   KeyboardArrowDown as IconKeyboardArrowDown,
 } from '@material-ui/icons';
 
-import * as authActions from '~/store/modules/auth/auth-actions';
+import * as authActions from '~/store/slices/auth/auth-actions';
 
 const useStyles = makeStyles(theme => ({
   avatar: {

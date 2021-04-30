@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, Tooltip } from '@material-ui/core';
-import { changeTheme } from '~/store/modules/app/app.actions';
+import { changeTheme } from '~/store/slices/app/app.actions';
 import {
   BrightnessLow as IconBrightnessLow,
   BrightnessHigh as IconBrightnessHigh
