@@ -5,7 +5,8 @@ export default makeStyles(theme => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(3),
+    display: 'flex'
   },
   item: {
     padding: theme.spacing(3),
@@ -32,5 +33,23 @@ export default makeStyles(theme => ({
   },
   label: {
     marginLeft: theme.spacing(1)
+  },
+  content: {
+    flexGrow: 1,
+    marginRight: 220,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 0
+    }
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginRight: 0
   }
 }));

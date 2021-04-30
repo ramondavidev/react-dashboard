@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Page from '~/components/Page';
 import {
   Container,
@@ -22,87 +22,111 @@ import {
 } from '~/components/Charts';
 import useStyles from './estoque.style';
 import Breadcrumb from './Breadcrumb';
+import Filter, { drawerWidth } from '~/components/Filter';
+import clsx from 'clsx';
 
 function Estoque() {
   const theme = useTheme();
-  const classes = useStyles();
   const [cardWidth, setCardWidth] = useState(0);
   const cardRef = useRef();
   const [vendas, setVendas] = useState(data);
+  const [drawer, setDrawer] = useState(true);
+  const classes = useStyles(drawer, drawerWidth);
 
   useEffect(() => {
     setCardWidth(cardRef.current?.offsetWidth);
   }, []);
 
+  const getMenuDrawerIsOpen = useCallback(status => {
+    setDrawer(status);
+  }, []);
+
   return (
     <Page className={classes.root} title="Dashboard Estoque">
-      <Container maxWidth={false}>
+      <Container
+        maxWidth={false}
+        style={{ display: 'flex', flexDirection: 'column' }}
+        className={clsx(classes.content, {
+          [classes.contentShift]: !drawer
+        })}
+      >
         <Breadcrumb />
-        <Box mb={2} mt={2}>
-          <Card>
-            <Grid alignItems="center" container justify="space-evenly">
-              <Grid className={classes.item} item md={4} sm={6} xs={12}>
-                <Typography
-                  component="h2"
-                  gutterBottom
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Indices de perdas no estoque
-                </Typography>
-                <div className={classes.valueContainer}>
-                  <CircularProgress
-                    theme={theme}
-                    value={50}
-                    labelAfterValue="%"
-                    size={100}
-                  />
-                </div>
+        {console.log('atualizou')}
+        <Grid container>
+          <Box mb={2} mt={2} width="100%">
+            <Card>
+              <Grid alignItems="center" container justify="space-evenly">
+                <Grid className={classes.item} item md={4} sm={6} xs={12}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    style={{ lineHeight: 1.3 }}
+                  >
+                    Indices de perdas no estoque
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <CircularProgress
+                      theme={theme}
+                      value={50}
+                      labelAfterValue="%"
+                      size={100}
+                    />
+                  </div>
+                </Grid>
+                <Grid className={classes.item} item md={4} sm={6} xs={12}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    style={{ lineHeight: 1.3 }}
+                  >
+                    Prazo médio de estocagem
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <BarProgress
+                      theme={theme}
+                      value={30}
+                      labelAfterValue="Dias"
+                      size={160}
+                    />
+                  </div>
+                </Grid>
+                <Grid className={classes.item} item md={4} sm={6} xs={12}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    style={{ lineHeight: 1.3 }}
+                  >
+                    Itens abaixo do ponto de pedido
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <GaugeChart
+                      theme={theme}
+                      value={0.3}
+                      color={[
+                        fade('#0068e9', 0.3),
+                        fade('#0068e9', 0.6),
+                        fade('#0068e9', 0.9)
+                      ]}
+                      size={350}
+                    />
+                  </div>
+                </Grid>
               </Grid>
-              <Grid className={classes.item} item md={4} sm={6} xs={12}>
-                <Typography
-                  component="h2"
-                  gutterBottom
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Prazo médio de estocagem
-                </Typography>
-                <div className={classes.valueContainer}>
-                  <BarProgress
-                    theme={theme}
-                    value={30}
-                    labelAfterValue="Dias"
-                    size={160}
-                  />
-                </div>
-              </Grid>
-              <Grid className={classes.item} item md={4} sm={6} xs={12}>
-                <Typography
-                  component="h2"
-                  gutterBottom
-                  variant="overline"
-                  color="textSecondary"
-                >
-                  Itens abaixo do ponto de pedido
-                </Typography>
-                <div className={classes.valueContainer}>
-                  <GaugeChart
-                    theme={theme}
-                    value={0.3}
-                    color={[
-                      fade('#0068e9', 0.3),
-                      fade('#0068e9', 0.6),
-                      fade('#0068e9', 0.9)
-                    ]}
-                    size={350}
-                  />
-                </div>
-              </Grid>
-            </Grid>
-          </Card>
-        </Box>
-        <Grid container spacing={2}>
+            </Card>
+          </Box>
+
+          <Filter getMenuDrawerIsOpen={getMenuDrawerIsOpen} />
+        </Grid>
+        <Grid
+          container
+          spacing={2}
+          className={clsx(classes.content, {
+            [classes.contentShift]: drawer
+          })}
+        >
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <Card ref={cardRef}>
               <CardHeader title="Estoque médio por mês" />

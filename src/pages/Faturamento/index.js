@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Page from '~/components/Page';
 import {
   Container,
@@ -8,7 +8,8 @@ import {
   Divider,
   CardHeader,
   useTheme,
-  fade
+  fade,
+  Typography
 } from '@material-ui/core';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -20,25 +21,181 @@ import {
 } from '~/components/Charts';
 import Breadcrumb from './Breadcrumb';
 import useStyles from './faturamento.styles';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+import Filter from '~/components/Filter';
+import clsx from 'clsx';
 
 function DashboardVendas(props) {
   const theme = useTheme();
   const classes = useStyles();
-  const [cardWidth, setCardWidth] = useState(0);
+  //const [300, setCardWidth] = useState(0);
   const cardRef = useRef();
   const [vendas, setVendas] = useState(data);
+  const [drawer, setDrawer] = useState(true);
 
-  useEffect(() => {
-    setCardWidth(cardRef.current?.offsetWidth);
-  }, []);
+  const getMenuDrawerIsOpen = useCallback(
+    status => {
+      console.log('status: ', status);
+      setDrawer(status);
+    },
+    [drawer]
+  );
 
   return (
     <Page className={classes.root} title="Dashboard Faturamento">
-      <Container maxWidth={false}>
+      <Container
+        maxWidth={false}
+        style={{ display: 'flex', flexDirection: 'column' }}
+        className={clsx(classes.content, {
+          [classes.contentShift]: !drawer
+        })}
+      >
         <Breadcrumb />
+        <Filter getMenuDrawerIsOpen={getMenuDrawerIsOpen} drawer={drawer} />
+        <Grid
+          container
+          style={{
+            flexWrap: 'nowrap',
+            width: drawer ? 'calc(100% - 20px)' : '100%'
+          }}
+        >
+          <Box mb={2} mt={2} width="100%">
+            <Card style={{ overflowX: 'scroll' }}>
+              <Grid
+                alignItems="center"
+                container
+                justify="space-evenly"
+                style={{
+                  flexWrap: 'nowrap'
+                }}
+              >
+                <Box className={classes.item}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    noWrap={true}
+                  >
+                    Faturamento bruto
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <MonetizationOnOutlinedIcon
+                      className={classes.iconHeader}
+                    />
+                    <Typography
+                      component="h2"
+                      gutterBottom
+                      variant="overline"
+                      color="textSecondary"
+                      noWrap={true}
+                    >
+                      R$ 1.800.231,00
+                    </Typography>
+                  </div>
+                </Box>
+                <Box className={classes.item}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    noWrap={true}
+                  >
+                    QTD.COMPRADORES
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <MonetizationOnOutlinedIcon
+                      className={classes.iconHeader}
+                    />
+                    <Typography
+                      component="h2"
+                      gutterBottom
+                      variant="overline"
+                      color="textSecondary"
+                      noWrap={true}
+                    >
+                      3.500
+                    </Typography>
+                  </div>
+                </Box>
+                <Box className={classes.item}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    noWrap={true}
+                  >
+                    Ticket médio
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <MonetizationOnOutlinedIcon
+                      className={classes.iconHeader}
+                    />
+                    <Typography
+                      component="h2"
+                      gutterBottom
+                      variant="overline"
+                      color="textSecondary"
+                      noWrap={true}
+                    >
+                      R$ 1.800.231,00
+                    </Typography>
+                  </div>
+                </Box>
+                <Box className={classes.item}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    noWrap={true}
+                  >
+                    C.M.V
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <MonetizationOnOutlinedIcon
+                      className={classes.iconHeader}
+                    />
+                    <Typography
+                      component="h2"
+                      gutterBottom
+                      variant="overline"
+                      color="textSecondary"
+                      noWrap={true}
+                    >
+                      R$ 1.800.231,00
+                    </Typography>
+                  </div>
+                </Box>
+                <Box className={classes.item}>
+                  <Typography
+                    component="h2"
+                    variant="overline"
+                    color="textSecondary"
+                    noWrap={true}
+                  >
+                    Margem contribuição
+                  </Typography>
+                  <div className={classes.valueContainer}>
+                    <MonetizationOnOutlinedIcon
+                      className={classes.iconHeader}
+                    />
+                    <Typography
+                      component="h2"
+                      gutterBottom
+                      variant="overline"
+                      color="textSecondary"
+                      noWrap={true}
+                    >
+                      R$ 561.450,00
+                    </Typography>
+                  </div>
+                </Box>
+              </Grid>
+            </Card>
+          </Box>
+        </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-            <Card ref={cardRef}>
+            <Card>
               <CardHeader title="Faturamento periodo" />
               <Divider />
               <PerfectScrollbar>
@@ -52,7 +209,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartLine
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.faturamentoPeriodo}
                     nameKey="name"
@@ -78,7 +235,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartDonut
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.vendaGrupoProduto}
                     nameKey="name"
@@ -103,7 +260,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartDonut
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.rankingPorProduto}
                     nameKey="name"
@@ -129,7 +286,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartBars
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.metaVendedor}
                     nameKey="nome"
@@ -154,7 +311,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartPizza
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.vendasMeioPagamento}
                     nameKey="nome"
@@ -179,7 +336,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartBarSimple
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.rankingPorCliente}
                     nameKey="name"
@@ -204,7 +361,7 @@ function DashboardVendas(props) {
                   justifyContent="center"
                 >
                   <ChartBarSimple
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.rankingPorVendendor}
                     nameKey="name"
@@ -231,7 +388,7 @@ function DashboardVendas(props) {
                 >
                   <ChartBarSimple
                     alignment="vertical"
-                    width={cardWidth}
+                    width={300}
                     theme={theme}
                     data={vendas.vendasPorFornecedor}
                     nameKey="name"

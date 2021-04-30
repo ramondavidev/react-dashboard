@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Page from '~/components/Page';
 import {
   Container,
@@ -12,15 +12,31 @@ import {
 import { CircularProgress, GaugeChart } from '~/components/Charts';
 import useStyles from './cicloOperacional.style';
 import Breadcrumb from './Breadcrumb';
+import Filter from '~/components/Filter';
+import clsx from 'clsx';
 
 const CicloOperacional = ({}) => {
   const theme = useTheme();
   const classes = useStyles();
+  const [drawer, setDrawer] = useState(true);
+
+  const getMenuDrawerIsOpen = useCallback(status => {
+    setDrawer(status);
+  }, []);
+
   return (
     <Page className={classes.root} title="Dashboard Ciclo Operational">
-      <Container maxWidth={false}>
+      <Container
+        maxWidth={false}
+        style={{ display: 'flex', flexDirection: 'column' }}
+        className={clsx(classes.content, {
+          [classes.contentShift]: !drawer
+        })}
+      >
         <Breadcrumb />
-        <Box mb={2} mt={2}>
+        <Filter getMenuDrawerIsOpen={getMenuDrawerIsOpen} />
+        <Box mb={2} mt={2} width="100%">
+          {console.log('ATUALIZOU')}
           <Card>
             <Grid alignItems="center" container justify="space-evenly">
               <Grid className={classes.item} item md={3} sm={6} xs={12}>
