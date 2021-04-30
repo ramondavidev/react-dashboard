@@ -3,8 +3,6 @@ import { useLocation, matchPath } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
-import SelectInput from '../../../components/Inputs/Select';
-import CustomizedButtons from '../../../components/Button';
 import {
   Box,
   Divider,
@@ -85,12 +83,6 @@ const sections = [
         ]
       }
     ]
-  },
-  {
-    subheader: 'Filtro',
-    items: [
-      
-    ]
   }
 ];
 
@@ -167,29 +159,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
   // const { user } = useAuth();
 
-  const years = [
-    { value: "2021" },
-    { value: "2020" },
-    { value: "2019" },
-    { value: "2018" },
-    { value: "2017" }
-];
-
-  const months = [
-    { value: "Janeiro" },
-    { value: "Fevereiro" },
-    { value: "Março" },
-    { value: "Abril" },
-    { value: "Maio" },
-    { value: "Junho" },
-    { value: "Julho" },
-    { value: "Agosto" },
-    { value: "Setembo" },
-    { value: "Outrubro" },
-    { value: "Novembro" },
-    { value: "Dezembro" }
-];
-
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
@@ -222,9 +191,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
               })}
             </List>
           ))}
-          <List> <SelectInput options={years} /> </List>
-          <List> <SelectInput options={months} /> </List>
-          <List> <CustomizedButtons value='Pesquisar' /> </List>
         </Box>
         <Divider />
       </PerfectScrollbar>

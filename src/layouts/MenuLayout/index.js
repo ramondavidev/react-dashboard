@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { APP_TOKEN } from '~/constants';
 
 import { useDispatch, useSelector } from '~/store/index';
-import { getUserData } from '../../store/modules/user/user.actions';
+import { getUserData } from '../../store/slices/user/user.actions';
 
 import { makeStyles } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';

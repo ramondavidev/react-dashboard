@@ -19,7 +19,7 @@ import GlobalStyles from '~/styles/global';
 import { createTheme } from '~/styles/theme';
 
 import Routes from '~/Routes';
-import * as authActions from '~/store/modules/auth/auth-actions';
+import * as authActions from '~/store/slices/auth/auth-actions';
 
 const jss = create({ plugins: [...jssPreset().plugins] });
 
