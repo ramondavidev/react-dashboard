@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   BarChart,
   Bar,
@@ -63,4 +63,4 @@ function CharBars({ width, theme, data, nameKey, dataKey, alignment }) {
   );
 }
 
-export default CharBars;
+export default memo(CharBars);

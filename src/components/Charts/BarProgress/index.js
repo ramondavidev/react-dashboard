@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { LinearProgress, Typography, Box } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -14,7 +14,7 @@ const BorderLinearProgress = withStyles(theme => ({
   }
 }))(LinearProgress);
 
-export default function BarProgress({
+function BarProgress({
   value,
   theme,
   labelAfterValue = '',
@@ -40,3 +40,5 @@ export default function BarProgress({
     </Box>
   );
 }
+
+export default memo(BarProgress);

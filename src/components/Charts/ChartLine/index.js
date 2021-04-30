@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { fade, makeStyles, useTheme } from '@material-ui/core';
 import {
   LineChart,
@@ -47,4 +47,4 @@ function renderLineChart({ theme, width, data, nameKey, dataKey }) {
     </ResponsiveContainer>
   );
 }
-export default renderLineChart;
+export default memo(renderLineChart);
