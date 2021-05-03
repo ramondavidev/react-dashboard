@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-import * as authActions from '~/store/modules/auth/auth-actions';
+import * as authActions from '~/store/slices/auth/auth-actions';
 import SplashScreen from '~/components/SplashScreen';
 
 const AuthContext = createContext({
