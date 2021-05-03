@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import GaugeChart from 'react-gauge-chart';
 import { Box, fade } from '@material-ui/core';
 import { height } from '@material-ui/system';
 
-export default function GaugeComponent({ value, theme, color, size, ...rest }) {
+function GaugeComponent({ value, theme, color, size, ...rest }) {
   return (
     <Box
       display="flex"
@@ -26,3 +26,5 @@ export default function GaugeComponent({ value, theme, color, size, ...rest }) {
     </Box>
   );
 }
+
+export default memo(GaugeComponent);

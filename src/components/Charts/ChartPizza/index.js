@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 function ChartPizza({ width, theme, data, nameKey, dataKey }) {
@@ -60,4 +60,4 @@ function ChartPizza({ width, theme, data, nameKey, dataKey }) {
   ) : null;
 }
 
-export default ChartPizza;
+export default memo(ChartPizza);

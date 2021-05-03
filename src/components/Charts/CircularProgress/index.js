@@ -1,5 +1,6 @@
 import { Box, CircularProgress, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import React, { memo } from 'react';
 
 const useStylesFacebook = makeStyles(theme => ({
   root: {
@@ -76,7 +77,7 @@ function CircularProgressWithLabel({
   );
 }
 
-export default function CircularStatic({
+function CircularStatic({
   value,
   theme,
   size = 100,
@@ -93,3 +94,5 @@ export default function CircularStatic({
     />
   );
 }
+
+export default memo(CircularStatic);
