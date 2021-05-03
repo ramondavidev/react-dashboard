@@ -5,8 +5,9 @@ import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import useStyles from './index.styles';
+import Button from '~/components/Button';
 
-import { Grid, Button, Box, IconButton, Divider } from '@material-ui/core';
+import { Grid, Box, IconButton, Divider } from '@material-ui/core';
 export const drawerWidth = 240;
 
 const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
@@ -24,16 +25,8 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
     getMenuDrawerIsOpen(false);
   };
 
-  const [yearSelected, setYearSelected] = useState(0);
-  const [monthSelected, setMonthSelected] = useState('');
-
-  const changeYear = year => {
-    setYearSelected(year);
-  };
-
-  const changeMonth = month => {
-    setMonthSelected(month);
-  };
+  const [yearSelected, setYearSelected] = useState([]);
+  const [monthSelected, setMonthSelected] = useState([]);
 
   const years = [2021, 2020, 2019];
 
@@ -51,6 +44,22 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
     'Novembro',
     'Dezembro'
   ];
+
+  const changeYear = year => {
+    if(yearSelected.some( (y) => y == year)) {
+      const result = yearSelected.filter( (y) => y != year);
+      return setYearSelected([...result]);
+    }
+    return setYearSelected([...yearSelected, year]);
+  };
+
+  const changeMonth = month => {
+    if(monthSelected.some( (mon) => mon == month)) {
+      const result = monthSelected.filter( (mon) => mon != month);
+      return setMonthSelected([...result]);
+    }
+    return setMonthSelected([...monthSelected, month]);
+  };
 
   return (
     <div className={classes.root}>
@@ -93,7 +102,7 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
               <div>
                 <div
                   className={clsx(classes.optionDate, {
-                    [classes.checked]: year === yearSelected
+                    [classes.checked]: yearSelected.some( (y) => y == year)
                   })}
                   onClick={() => changeYear(year)}
                 >
@@ -119,7 +128,7 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
                 <Grid item xs={6} sm={6} md={6}>
                   <div
                     className={clsx(classes.optionDate, {
-                      [classes.checked]: month === monthSelected
+                      [classes.checked]: monthSelected.some( (mon) => mon == month)
                     })}
                     onClick={() => changeMonth(month)}
                   >
@@ -129,9 +138,7 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
               ))}
             </Grid>
             <Box mx={0.5} my={0.8}>
-              <Button variant="contained" color="primary" size="small">
-                Filtrar
-              </Button>
+              <Button value="Filtrar" />
             </Box>
           </div>
         )}
