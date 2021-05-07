@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import {
   BarChart,
   Bar,
@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 import { fade } from '@material-ui/core';
 
-function CharBars({ width, theme, data, nameKey, dataKey, alignment }) {
+const CharBars = ({ width, theme, data, nameKey, dataKey, alignment }) => {
   return (
     <ResponsiveContainer width="99%" height={300}>
       <BarChart
@@ -63,4 +63,4 @@ function CharBars({ width, theme, data, nameKey, dataKey, alignment }) {
   );
 }
 
-export default memo(CharBars);
+export default CharBars;

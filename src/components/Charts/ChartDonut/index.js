@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 
-function ChartPie({
+const ChartPie = ({
   width,
   theme,
   data,
@@ -9,7 +9,7 @@ function ChartPie({
   dataKey,
   startAngle,
   endAngle
-}) {
+}) => {
   const RADIAN = Math.PI / 180;
 
   const renderCustomizedLabel = ({
@@ -73,4 +73,4 @@ function ChartPie({
   ) : null;
 }
 
-export default memo(ChartPie);
+export default ChartPie;

@@ -35,7 +35,6 @@ function DashboardVendas(props) {
 
   const getMenuDrawerIsOpen = useCallback(
     status => {
-      console.log('status: ', status);
       setDrawer(status);
     },
     [drawer]

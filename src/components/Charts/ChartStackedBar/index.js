@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -6,24 +6,70 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Legend,
   ResponsiveContainer
-} from 'recharts';
-import { fade } from '@material-ui/core';
+} from "recharts";
 
-const ChartBarSimple = ({ width, theme, data, alignment, dataKey, nameKey }) => {
+const data = [
+  {
+    name: "Felipe",
+    "Contribuição": 30000,
+    "Vendas": 164130,
+    amt: 2400
+  },
+  {
+    name: "Alberto",
+    "Contribuição": 95700,
+    "Vendas": 273553,
+    amt: 2210
+  },
+  {
+    name: "Mário",
+    "Contribuição": 54700,
+    "Vendas": 364738,
+    amt: 2290
+  },
+  {
+    name: "Carlos",
+    "Contribuição": 91185,
+    "Vendas": 455923,
+    amt: 2000
+  },
+  {
+    name: "João",
+    "Contribuição": 91185,
+    "Vendas": 485923,
+    amt: 2181
+  },
+  {
+    name: "Pedro",
+    "Contribuição": 141400,
+    "Vendas": 538292,
+    amt: 2500
+  },
+  {
+    name: "Marcos",
+    "Contribuição": 191400,
+    "Vendas": 638292,
+    amt: 2100
+  }
+];
+
+const StackedBar = ({ theme, alignment }) => {
   return (
-    <>
-      <ResponsiveContainer width="99%" height={300}>
+    <div style={{ width: "100%", height: 300 }}>
+      <ResponsiveContainer>
         <BarChart
+        layout={alignment || 'horizontal'}
+          width={500}
+          height={300}
           data={data}
-          layout={alignment || 'horizontal'}
           margin={{
-            top: 5,
+            top: 10,
             right: 30,
             left: 20,
-            bottom: 5
+            bottom: 15
           }}
-          style={{ fontFamily: 'Roboto, Helvetica, Arial, sans-serif' }}
         >
           <CartesianGrid
             stroke={theme.palette.divider}
@@ -33,13 +79,12 @@ const ChartBarSimple = ({ width, theme, data, alignment, dataKey, nameKey }) => 
           <XAxis
             axisLine={false}
             type={alignment === 'vertical' ? 'number' : 'category'}
-            dataKey={alignment === 'vertical' ? dataKey : nameKey}
             stroke={theme.palette.text.secondary}
             tickLine={false}
           />
           <YAxis
             type={alignment === 'vertical' ? 'category' : 'number'}
-            dataKey={alignment === 'vertical' ? nameKey : dataKey}
+            dataKey="name"
             stroke={theme.palette.text.secondary}
             tickLine={false}
           />
@@ -55,11 +100,13 @@ const ChartBarSimple = ({ width, theme, data, alignment, dataKey, nameKey }) => 
               borderColor: theme.palette.divider
             }}
           />
-          <Bar dataKey={dataKey} fill={fade('#00e2ff', 0.9)} />
+          <Legend />
+          <Bar dataKey= "Vendas" stackId="a" fill="#0068e9" />
+          <Bar label={{ position: "right" }} dataKey="Contribuição" stackId="a" fill="#1fe1f2" />
         </BarChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 }
 
-export default ChartBarSimple;
+export default StackedBar;

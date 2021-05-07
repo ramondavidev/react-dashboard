@@ -6,6 +6,12 @@ import ChartPizza from './ChartPizza';
 import CircularProgress from './CircularProgress';
 import BarProgress from './BarProgress';
 import GaugeChart from './GaugeChart';
+import MultipleLineChart from './MultipleLineChart';
+import ComposedBar from './ComposedBar';
+import SingleChartLine from './SingleChartLine';
+import ChartDoubleLine from './ChartDoubleLine';
+import StackedBar from './ChartStackedBar';
+import ChartText from './ChartText';
 
 export {
   ChartBarSimple,
@@ -15,5 +21,11 @@ export {
   ChartPizza,
   CircularProgress,
   BarProgress,
-  GaugeChart
+  GaugeChart,
+  MultipleLineChart,
+  ComposedBar,
+  SingleChartLine,
+  ChartDoubleLine,
+  StackedBar,
+  ChartText
 };

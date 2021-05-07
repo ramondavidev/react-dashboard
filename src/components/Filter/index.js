@@ -98,8 +98,8 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
             >
               Ano
             </div>
-            {years.map(year => (
-              <div>
+            {years.map((year, i) => (
+              <div key={i}>
                 <div
                   className={clsx(classes.optionDate, {
                     [classes.checked]: yearSelected.some( (y) => y == year)
@@ -124,8 +124,8 @@ const Filter = ({ getMenuDrawerIsOpen, drawer }) => {
               Meses
             </div>
             <Grid container className={classes.monthsContainer}>
-              {months.map(month => (
-                <Grid item xs={6} sm={6} md={6}>
+              {months.map((month, i) => (
+                <Grid key={i} item xs={6} sm={6} md={6}>
                   <div
                     className={clsx(classes.optionDate, {
                       [classes.checked]: monthSelected.some( (mon) => mon == month)

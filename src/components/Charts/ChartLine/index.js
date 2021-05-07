@@ -1,5 +1,4 @@
-import React, { memo } from 'react';
-import { fade, makeStyles, useTheme } from '@material-ui/core';
+import React from 'react';
 import {
   LineChart,
   Line,
@@ -10,7 +9,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-function renderLineChart({ theme, width, data, nameKey, dataKey }) {
+const renderLineChart = ({ theme, width, data, nameKey, dataKey }) => {
   return (
     <ResponsiveContainer width="99%" height={300}>
       <LineChart
@@ -47,4 +46,4 @@ function renderLineChart({ theme, width, data, nameKey, dataKey }) {
     </ResponsiveContainer>
   );
 }
-export default memo(renderLineChart);
+export default renderLineChart;

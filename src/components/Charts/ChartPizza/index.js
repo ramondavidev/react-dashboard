@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-function ChartPizza({ width, theme, data, nameKey, dataKey }) {
+const ChartPizza = ({ width, theme, data, nameKey, dataKey }) => {
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
     cx,
@@ -60,4 +60,4 @@ function ChartPizza({ width, theme, data, nameKey, dataKey }) {
   ) : null;
 }
 
-export default memo(ChartPizza);
+export default ChartPizza;

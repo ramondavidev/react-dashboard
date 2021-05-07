@@ -51,7 +51,6 @@ function Estoque() {
         })}
       >
         <Breadcrumb />
-        {console.log('atualizou')}
         <Grid container>
           <Box mb={2} mt={2} width="100%">
             <Card>

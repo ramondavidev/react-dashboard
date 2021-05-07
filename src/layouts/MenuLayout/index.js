@@ -64,7 +64,6 @@ const MenuLayout = ({ route, match }) => {
         <div className={classes.wrapper}>
           <div className={classes.contentContainer}>
             <div className={classes.content}>
-              {console.log('children: ', route.routes)}
               {renderRoutes(route.routes)}
             </div>
           </div>

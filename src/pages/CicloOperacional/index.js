@@ -6,10 +6,22 @@ import {
   Card,
   Box,
   useTheme,
+  CardHeader,
+  Divider,
   fade,
   Typography
 } from '@material-ui/core';
-import { CircularProgress, GaugeChart } from '~/components/Charts';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import { 
+  CircularProgress, 
+  GaugeChart, 
+  MultipleLineChart, 
+  ComposedBar, 
+  SingleChartLine, 
+  ChartDoubleLine, 
+  StackedBar,
+  ChartText 
+} from '~/components/Charts';
 import useStyles from './cicloOperacional.style';
 import Breadcrumb from './Breadcrumb';
 import Filter from '~/components/Filter';
@@ -36,9 +48,9 @@ const CicloOperacional = ({}) => {
         <Breadcrumb />
         <Filter getMenuDrawerIsOpen={getMenuDrawerIsOpen} />
         <Box mb={2} mt={2} width="100%">
-          {console.log('ATUALIZOU')}
           <Card>
             <Grid alignItems="center" container justify="space-evenly">
+
               <Grid className={classes.item} item md={3} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -57,6 +69,7 @@ const CicloOperacional = ({}) => {
                   />
                 </div>
               </Grid>
+
               <Grid className={classes.item} item md={3} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -75,6 +88,7 @@ const CicloOperacional = ({}) => {
                   />
                 </div>
               </Grid>
+
               <Grid className={classes.item} item md={3} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -93,6 +107,7 @@ const CicloOperacional = ({}) => {
                   />
                 </div>
               </Grid>
+              
               <Grid className={classes.item} item md={3} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -117,6 +132,7 @@ const CicloOperacional = ({}) => {
         <Box mb={2}>
           <Card>
             <Grid alignItems="center" container justify="space-evenly">
+
               <Grid className={classes.item} item md={4} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -139,6 +155,7 @@ const CicloOperacional = ({}) => {
                   />
                 </div>
               </Grid>
+
               <Grid className={classes.item} item md={4} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -161,6 +178,7 @@ const CicloOperacional = ({}) => {
                   />
                 </div>
               </Grid>
+              
               <Grid className={classes.item} item md={4} sm={6} xs={12}>
                 <Typography
                   component="h2"
@@ -185,9 +203,112 @@ const CicloOperacional = ({}) => {
                   />
                 </div>
               </Grid>
+              
             </Grid>
           </Card>
         </Box>
+
+
+        <Grid alignItems="center" spacing={2} container justify="space-evenly">
+
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+              <Card>
+                <CardHeader title="Análise" />
+                <Divider />
+                <Box
+                    width="100%"
+                    pt={4}
+                    pr={2}
+                    pl={2}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                  <MultipleLineChart theme={theme} />
+                </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={12} md={6} lg={6}>
+              <Card>
+                <CardHeader title="Receitas e Despesas" />
+                <Divider />
+                <Box
+                    width="100%"
+                    pt={4}
+                    pr={2}
+                    pl={2}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <ComposedBar theme={theme} />
+                  </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={12} md={6} lg={6}>
+              <Card>
+                <CardHeader title="Lucro Líquido Acumulado no Ano" />
+                <Divider />
+                <PerfectScrollbar >
+                <Box
+                    width="100%"
+                    pt={4}
+                    pr={2}
+                    pl={2}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <SingleChartLine theme={theme} />
+                  </Box>
+                </PerfectScrollbar>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={12} md={6} lg={6}>
+              <Card>
+                <CardHeader title="Resultado de Vendas" />
+                <Divider />
+                <Box
+                    width="100%"
+                    pt={4}
+                    pr={2}
+                    pl={2}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <ChartDoubleLine theme={theme} />
+                  </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={12} md={6} lg={6}>
+              <Card>
+                <CardHeader title="Top 7 Vendas por Vendedor com Marg. de Contrib." />
+                <Divider />
+                <Box
+                    width="100%"
+                    pt={4}
+                    pr={2}
+                    pl={2}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <StackedBar alignment="vertical" theme={theme} />
+                  </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={12} md={6} lg={6}>
+              <ChartText />
+            </Grid>
+
+          </Grid>
+
       </Container>
     </Page>
   );
